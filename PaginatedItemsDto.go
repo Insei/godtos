@@ -1,23 +1,23 @@
 package godtos
 
-//PaginationInfoDto struct for paginated result response
+// PaginationInfoDto struct for paginated result response
 type PaginationInfoDto struct {
 	//Page - page number
-	Page int `json:"Page" doc:"page number"`
+	Page int `json:"page" doc:"page number"`
 	//Size - page size
-	Size int `json:"Size" doc:"page size"`
+	Size int `json:"size" doc:"page size"`
 	//TotalCount - total number of items
-	TotalCount int `json:"TotalCount" doc:"total number of items"`
+	TotalCount int `json:"totalCount" doc:"total number of items"`
 	//TotalPages - total number of pages
-	TotalPages int `json:"TotalPages" doc:"total number of pages"`
+	TotalPages int `json:"totalPages" doc:"total number of pages"`
 }
 
-//PaginatedItemsDto struct with slice of items and pagination info
+// PaginatedItemsDto struct with slice of items and pagination info
 type PaginatedItemsDto[T any] struct {
 	//Pagination info about pagination
-	Pagination PaginationInfoDto `json:"Pagination" doc:"pagination info"`
+	Pagination PaginationInfoDto `json:"pagination" doc:"pagination info"`
 	//Items slice of items
-	Items []T `json:"Items" doc:"slice of items"`
+	Items []T `json:"items" doc:"slice of items"`
 }
 
 func pageCount(totalItems, pageSize int) int {
@@ -32,7 +32,7 @@ func pageCount(totalItems, pageSize int) int {
 	return pages
 }
 
-//NewEmptyPaginatedItemsDto constructor for PaginatedItemsDto[DataType] without data, used for errors
+// NewEmptyPaginatedItemsDto constructor for PaginatedItemsDto[DataType] without data, used for errors
 func NewEmptyPaginatedItemsDto[T any]() PaginatedItemsDto[T] {
 	return PaginatedItemsDto[T]{
 		Pagination: PaginationInfoDto{
@@ -45,7 +45,7 @@ func NewEmptyPaginatedItemsDto[T any]() PaginatedItemsDto[T] {
 	}
 }
 
-//NewPaginatedItemsDto constructor for PaginatedItemsDto[DataType]
+// NewPaginatedItemsDto constructor for PaginatedItemsDto[DataType]
 func NewPaginatedItemsDto[T any](page, size, totalCount int, items []T) PaginatedItemsDto[T] {
 	return PaginatedItemsDto[T]{
 		Pagination: PaginationInfoDto{
