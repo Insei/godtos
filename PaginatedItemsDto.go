@@ -47,6 +47,9 @@ func NewEmptyPaginatedItemsDto[T any]() PaginatedItemsDto[T] {
 
 // NewPaginatedItemsDto constructor for PaginatedItemsDto[DataType]
 func NewPaginatedItemsDto[T any](page, size, totalCount int, items []T) PaginatedItemsDto[T] {
+	if items == nil {
+		items = make([]T, 0)
+	}
 	return PaginatedItemsDto[T]{
 		Pagination: PaginationInfoDto{
 			Page:       page,
