@@ -3,21 +3,21 @@ package godtos
 // PaginationInfoDto struct for paginated result response
 type PaginationInfoDto struct {
 	//Page - page number
-	Page int `json:"page" doc:"page number"`
+	Page int `json:"page" doc:"Page number"`
 	//Size - page size
-	Size int `json:"size" doc:"page size"`
+	Size int `json:"size" doc:"Page size"`
 	//TotalCount - total number of items
-	TotalCount int `json:"totalCount" doc:"total number of items"`
+	TotalCount int `json:"totalCount" doc:"Total number of items"`
 	//TotalPages - total number of pages
-	TotalPages int `json:"totalPages" doc:"total number of pages"`
+	TotalPages int `json:"totalPages" doc:"Total number of pages"`
 }
 
 // PaginatedItemsDto struct with slice of items and pagination info
 type PaginatedItemsDto[T any] struct {
 	//Pagination info about pagination
-	Pagination PaginationInfoDto `json:"pagination" doc:"pagination info"`
+	Pagination PaginationInfoDto `json:"pagination" doc:"Pagination info"`
 	//Items slice of items
-	Items []T `json:"items" doc:"slice of items"`
+	Items []T `json:"items" doc:"Slice of items"`
 }
 
 func pageCount(totalItems, pageSize int) int {
