@@ -3,13 +3,13 @@ package godtos
 // PaginationInfoDto struct for paginated result response
 type PaginationInfoDto struct {
 	//Page - page number
-	Page int `json:"page" doc:"Page number"`
+	Page uint64 `json:"page" doc:"Page number" default:"1" minimum:"1"`
 	//Size - page size
-	Size int `json:"size" doc:"Page size"`
+	Size uint64 `json:"size" doc:"Page size" minimum:"1" default:"10"`
 	//TotalCount - total number of items
-	TotalCount int `json:"totalCount" doc:"Total number of items"`
+	TotalCount uint64 `json:"totalCount" minimum:"0" doc:"Total number of items"`
 	//TotalPages - total number of pages
-	TotalPages int `json:"totalPages" doc:"Total number of pages"`
+	TotalPages uint64 `json:"totalPages" minimum:"0" doc:"Total number of pages"`
 }
 
 // PaginatedItemsDto struct with slice of items and pagination info
@@ -20,7 +20,7 @@ type PaginatedItemsDto[T any] struct {
 	Items []T `json:"items" doc:"Slice of items"`
 }
 
-func pageCount(totalItems, pageSize int) int {
+func pageCount(totalItems, pageSize uint64) uint64 {
 	pages := totalItems / pageSize
 
 	if totalItems%pageSize > 0 {
@@ -46,7 +46,7 @@ func NewEmptyPaginatedItemsDto[T any]() PaginatedItemsDto[T] {
 }
 
 // NewPaginatedItemsDto constructor for PaginatedItemsDto[DataType]
-func NewPaginatedItemsDto[T any](page, size, totalCount int, items []T) PaginatedItemsDto[T] {
+func NewPaginatedItemsDto[T any](page, size, totalCount uint64, items []T) PaginatedItemsDto[T] {
 	if items == nil {
 		items = make([]T, 0)
 	}
